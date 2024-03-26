@@ -1,6 +1,11 @@
 package com.wwil.makao.frontend;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.wwil.makao.backend.MakaoBackend;
 import com.wwil.makao.backend.Card;
 import com.wwil.makao.backend.Rank;
@@ -31,6 +36,7 @@ public class GameComponentsPreparer {
         preparePullButton();
         prepareHandGroups();
         createCardChooser();
+        createTextLabel();
     }
 
     private void prepareStackCardsGroup() {
@@ -70,6 +76,7 @@ public class GameComponentsPreparer {
         }
     }
 
+
 //    private void test(int subject) {
 //        handGroups.get(subject).getPlayerHand().getCards().clear();
 //        handGroups.get(subject).getPlayerHand().addCardsToHand(Arrays.asList(new Card(Rank.J, Suit.CLUB),
@@ -83,7 +90,6 @@ public class GameComponentsPreparer {
 //        //handGroups.get(subject).getPlayerHand().addCardToHand(card3);
 //        handGroups.get(subject).getPlayerHand().addCardToHand(card4);
 //    }
-
 
     private void setPlayersCardActorsAlignmentParams() {
         handGroups.get(0).setCardsAlignment(CardsAlignmentParams.SOUTH);
@@ -135,5 +141,18 @@ public class GameComponentsPreparer {
         stage.addActor(cardChooser);
         cardChooser.setPosition(0, 0);
         controller.setCardChooser(cardChooser);
+    }
+
+    private void createTextLabel() {
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = new BitmapFont(Gdx.files.internal("fonts/messageFont.fnt"));
+        labelStyle.fontColor = Color.valueOf("151515");
+        //https://libgdx.com/wiki/graphics/2d/fonts/bitmap-fonts
+
+        Label label = new Label("Player 1 is demanding 8 DIAMOND",labelStyle);
+        label.setSize(15,15);
+        label.setPosition(GUIparams.WIDTH/2f+75,GUIparams.HEIGHT/2f + 275);
+        label.setAlignment(Align.center);
+        stage.addActor(label);
     }
 }
